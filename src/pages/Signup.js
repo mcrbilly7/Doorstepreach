@@ -1,20 +1,30 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
 const Signup = () => {
+  const [email, setEmail] = useState('');
+  const { login } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    login(email); // Simulate account creation by logging in
+    navigate('/dashboard');
+  };
+
   return (
-    <div className="container">
-      <h1>Create Account</h1>
-      <form>
-        <label>Full Name</label>
-        <input type="text" placeholder="Nosson..." />
-
-        <label>Email</label>
-        <input type="email" placeholder="you@example.com" />
-
-        <label>Password</label>
-        <input type="password" placeholder="••••••••" />
-
-        <button type="submit">Sign Up</button>
+    <div className="auth-page">
+      <h2>Sign Up</h2>
+      <form onSubmit={handleSubmit} className="auth-form">
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          required
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <button type="submit">Create Account</button>
       </form>
     </div>
   );
