@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Doorstep Reach</title>
+  <style>
+    :root {
+      --bg: #0c0c0c;
+      --text: #ffffff;
+      --accent: #0066ff;
+      --card: #1a1a1a;
+      --border: #333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      padding-bottom: 70px;
+    }
+
+    header {
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    header h1 {
+      font-size: 22px;
+      color: var(--text);
+    }
+
+    nav a {
+      color: var(--text);
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .hero {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .hero h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .hero button {
+      margin: 10px 10px;
+      padding: 12px 24px;
+      border: none;
+      font-size: 16px;
+      border-radius: 8px;
+      background-color: var(--accent);
+      color: white;
+      cursor: pointer;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    .section-title {
+      font-size: 20px;
+      margin: 20px 0 10px;
+    }
+
+    .delivery-row {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: var(--card);
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--text);
+      text-align: center;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .verified {
+      display: inline-block;
+      margin-left: 6px;
+      font-size: 14px;
+      color: #4da6ff;
+    }
+
+    .language {
+      font-size: 12px;
+      color: #888;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      color: white;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 999;
+    }
+
+    .modal-content {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .modal-content button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: var(--accent);
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Doorstep Reach</h1>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">How It Works</a>
+    <a href="#">About</a>
+  </nav>
+</header>
+
+<main>
+  <div class="hero">
+    <h2>GET FLYERS DELIVERED TO EVERY DOOR</h2>
+    <button onclick="alert('Delivery request page')">Request Delivery</button>
+    <button onclick="alert('Stepper sign-up')">Become a Stepper</button>
+  </div>
+
+  <div class="section-title">How It Works</div>
+  <div class="card">
+    <p>📍 Request Delivery: Choose your target area.</p>
+    <p>🚶 Flyers Distributed: Steppers deliver door-to-door.</p>
+    <p>📸 Confirming Delivery: Optional photo confirmation.</p>
+  </div>
+
+  <div class="section-title">Dashboard</div>
+  <div class="card">
+    <p><strong>Earnings:</strong> $38.25</p>
+    <p><strong>Active Delivery:</strong> 1</p>
+    <hr style="margin: 10px 0;">
+    <div class="delivery-row">
+      <span>122 Elm St.<br>456 Maple Ave</span>
+      <span>In Progress</span>
+      <span>$20.50</span>
+    </div>
+    <div class="delivery-row">
+      <span>486 Strebmann<br>Test Mutiern</span>
+      <span>Delivered ✅</span>
+      <span>$20.50</span>
+    </div>
+    <div class="delivery-row">
+      <span>789 Oak Dr.</span>
+      <span>Delivered ✅</span>
+      <span>$15.75</span>
+    </div>
+  </div>
+
+  <div class="language">Auto-detected Language: English</div>
+</main>
+
+<footer>
+  <a href="#">🏠<br>Home</a>
+  <a href="#">❓<br>FAQ</a>
+  <a href="#">🏢<br>For Businesses</a>
+  <a href="#">🚶‍♂️<br>For Steppers</a>
+</footer>
+
+<div class="modal" id="legalModal">
+  <div class="modal-content">
+    <h3>Terms & Privacy</h3>
+    <p>You must accept our terms of service and privacy policy before continuing.</p>
+    <button onclick="acceptTerms()">Accept & Continue</button>
+  </div>
+</div>
+
+<script>
+  function acceptTerms() {
+    localStorage.setItem('legalAccepted', 'true');
+    document.getElementById('legalModal').style.display = 'none';
+  }
+
+  window.onload = function() {
+    if (!localStorage.getItem('legalAccepted')) {
+      document.getElementById('legalModal').style.display = 'flex';
+    }
+  };
+</script>
+
+</body>
+</html>
